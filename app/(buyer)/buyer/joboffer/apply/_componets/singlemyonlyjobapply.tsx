@@ -90,7 +90,7 @@ function SingleMyonlyjobapply({ apply }: SingleMyonlyjobapplyProps) {
 
                   <td className="px-6 py-4  ">
                     <Link
-                      href={`/apply/messages/${order.id}`}
+                      href={`/buyer/apply/messages/${order.id}`}
                       className="font-medium text-blue-600  hover:underline"
                     >
                       Send

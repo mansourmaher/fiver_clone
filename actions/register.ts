@@ -24,7 +24,7 @@ export const register=async(values:z.infer<typeof RegisterSchema>)=>
         return {error:"Email already exist"}
     }
     
-    await db.user.create({data:{email,password:hassedPassword,username:name}})
+    await db.user.create({data:{email,password:hassedPassword,username:name,role:role!=="CLIENT"?"FREELANCER":"CLIENT"}})
    
 
 

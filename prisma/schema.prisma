@@ -13,6 +13,12 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  CLIENT
+  FREELANCER
+  ADMIN
+}
+
 model User {
   id               String    @id @default(cuid())
   email            String    @unique
@@ -25,6 +31,7 @@ model User {
   profileImage     String?
   isProfileInfoset Boolean   @default(false)
   emailVerified    Boolean   @default(true)
+  role             Role      @default(CLIENT)
   Gigs             Gigs[]
   Reviews          Reviews[]
   myOrders         Orders[]  @relation("buyer")
@@ -40,6 +47,27 @@ model User {
   Contarctasfrelencer Contarct[]       @relation("frellencer")
 
   Contarctasclient Contarct[] @relation("client")
+  origin           Origin?
+  filier          String?
+  about           String?
+  DateOfBirth     DateTime?
+  subtitle        String?
+  linkedin        String?
+  twitter         String?
+  github          String?
+  patiants     String[]
+  
+}
+
+model Origin {
+  id     String @id @default(uuid())
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+  value  String
+  label  String
+  flag   String
+  region String
+  lalng  Int[]
 }
 
 model Gigs {
@@ -144,9 +172,10 @@ model Community {
 model Post {
   id String @id @default(uuid())
 
-  content String
-  userId  String
-  user    User   @relation(fields: [userId], references: [id])
+  content  String
+  userId   String
+  user     User    @relation(fields: [userId], references: [id])
+  imageUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -159,9 +188,10 @@ model Post {
 model PostResponse {
   id String @id @default(uuid())
 
-  content String?
-  userId  String?
-  user    User?   @relation(fields: [userId], references: [id])
+  content  String?
+  userId   String?
+  user     User?   @relation(fields: [userId], references: [id])
+  imageUrl String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

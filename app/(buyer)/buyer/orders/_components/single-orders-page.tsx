@@ -11,8 +11,9 @@ interface Order {
 function SingleOrdersPage({ orders }: Order) {
   return (
     <div className="min-h-[80vh] my-10 mt-0 px-32">
-      <h3 className="m-5 text-2xl font-semibold">All your Orders as a buyer 
-      //hatha client postula fi gigs mhabtou lfrelencer
+      <h3 className="m-5 text-2xl font-semibold">
+        All your Orders as a buyer //hatha client postula fi gigs mhabtou
+        lfrelencer
       </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -35,6 +36,9 @@ function SingleOrdersPage({ orders }: Order) {
                 Order Date
               </th>
               <th scope="col" className="px-6 py-3">
+                status
+              </th>
+              <th scope="col" className="px-6 py-3">
                 Send Message
               </th>
             </tr>
@@ -55,6 +59,9 @@ function SingleOrdersPage({ orders }: Order) {
                   <td className="px-6 py-4">{order.gig.deliveryTime}</td>
                   <td className="px-6 py-4">
                     {format(new Date(order.createdAt), "dd/MM/yyyy")}
+                  </td>
+                  <td className="px-6 py-4">
+                    {order.isCompleted ? "Accepted" : "Pending"}
                   </td>
 
                   <td className="px-6 py-4 ">

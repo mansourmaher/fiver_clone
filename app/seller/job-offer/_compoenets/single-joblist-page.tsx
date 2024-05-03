@@ -32,11 +32,10 @@ function SingleJobList({ jobs }: SingleJobListProps) {
     <div>
       <div className="flex justify-between items-center px-24 pb-10">
         <div>
-          <h1 className="text-3xl font-semibold text-sky-400">Job Offers</h1>
+          <h1 className="text-3xl font-semibold ">Job Offers</h1>
           <span>
-            There are {filteredJobs.length} job offers available for you
-            if you are interested in any of them, please contact the seller
-
+            There are {filteredJobs.length} job offers available for you if you
+            are interested in any of them, please contact the seller
           </span>
         </div>
         <div className="flex space-x-6">
@@ -67,7 +66,7 @@ function SingleJobList({ jobs }: SingleJobListProps) {
           )}
         </div>
       </div>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-1 lg:grid-cols-1">
         {filteredJobs.map((job) => (
           <JobItem key={job.id} job={job} />
         ))}

@@ -23,14 +23,28 @@ export const login=async(values:z.infer<typeof LoginSchema>)=>
      if(!existingUser.emailVerified)
      {
         
-         console.log("sentmailof verifictaion")
+         console.log("sent mail of verifictaion")
          return {error:"Please verify your email before logging in. A new verification email has been sent to your email address."}
 
 
      }
     existingUser.emailVerified=false
     try{
-        await signIn('credentials',{email,password,redirectTo:"/"})
+        const gettherole=existingUser.role
+        if(gettherole==="CLIENT")
+        {
+            await signIn('credentials',{email,password,redirectTo:"/buyer/dashboard"})
+        }
+        else if(gettherole==="FREELANCER")
+        {
+            await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
+        }
+        else
+        {
+            await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
+        }
+
+        await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
         
         return {success:"Logged in"}
     }catch(error:any){

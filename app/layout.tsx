@@ -4,8 +4,8 @@ import "./globals.css";
 
 import { SessionProvider } from "next-auth/react";
 import { auth } from "@/auth";
-import Navbar from "./landingpage/Navbar";
 import { ToastProvider } from "./providers/toaster-provider";
+import LandingPageNavbar from "./landingpage/landingpagenavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
   return (
     <SessionProvider session={session}>
       <html lang="en">
-        <Navbar />
+        {/* <Navbar /> */}
 
         <body className={inter.className}>
           <ToastProvider />

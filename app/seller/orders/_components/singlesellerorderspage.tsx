@@ -86,7 +86,7 @@ function SingleSellerOrderspage({ orders }: Order) {
 
                   <td className="px-6 py-4 ">
                     <Link
-                      href={`/buyer/orders/messages/${order.id}`}
+                      href={`/seller/orders/messages/${order.id}`}
                       className="font-medium text-blue-600  hover:underline"
                     >
                       Send

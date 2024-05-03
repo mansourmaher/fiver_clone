@@ -5,7 +5,7 @@ import { add } from "date-fns";
 import { revalidatePath } from "next/cache";
 
 
-export async function addPostInCommunity(comunityId: string, message: string ) {
+export async function addPostInCommunity(comunityId: string, message: string , image:string | null) {
 
     const user=await auth()
     const userId=user?.user.id
@@ -15,6 +15,8 @@ export async function addPostInCommunity(comunityId: string, message: string ) {
             content:message,
             communityId:comunityId,
             userId:userId!,
+            imageUrl:image
+            
             
         }
     })

@@ -14,7 +14,7 @@ function JobItem({ job }: JobItemProps) {
     <div>
       <div
         className="bg-white shadow-lg rounded-lg p-6 mx-24 mb-24 cursor-pointer"
-        onClick={() => router.push(`/job-offer/${job.id}`)}
+        onClick={() => router.push(`/seller/job-offer/${job.id}`)}
       >
         <div className="flex items-start space-x-6">
           <div className="shrink-0">

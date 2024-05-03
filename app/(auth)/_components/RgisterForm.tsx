@@ -27,9 +27,9 @@ export const RegisterForm = () => {
   const [error, setError] = useState<string | undefined>("");
   const [succes, setSucces] = useState<string | undefined>("");
 
-  const [selected, setSelected] = useState<string>("STUDENT");
+  const [selected, setSelected] = useState<string>("CLIENT");
   const onChange = () => {
-    setSelected(selected === "STUDENT" ? "TEACHER" : "STUDENT");
+    setSelected(selected === "CLIENT" ? "FREELANCER" : "CLIENT");
   };
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
@@ -38,7 +38,7 @@ export const RegisterForm = () => {
       email: "",
       password: "",
       name: "",
-      role: "STUDENT",
+      role: "CLIENT",
     },
   });
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
@@ -141,7 +141,7 @@ export const RegisterForm = () => {
                   onClick={onChange}
                   className="font-bold text-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer"
                 >
-                  {selected} {selected === "STUDENT" ? "🎓" : "👨‍🏫"}
+                  {selected} {selected === "CLIENT" ? "🎓" : "👨‍🏫"}
                 </span>
               </div>
 
