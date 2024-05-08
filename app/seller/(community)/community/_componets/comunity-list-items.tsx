@@ -13,7 +13,9 @@ interface ComunityUserItemProps {
 
 export default function ComunityListItem({ comm }: ComunityUserItemProps) {
   const router = useRouter();
-  const handelOnclick = () => {};
+  const handelOnclick = (id:string) => {
+    router.push(`/seller/community/${id}`);
+  };
 
   return (
     <div
@@ -21,7 +23,7 @@ export default function ComunityListItem({ comm }: ComunityUserItemProps) {
     mb-4 w-full hover:bg-slate-300/20 dark:hover:bg-gray-700  border-b border-gray-300 dark:border-gray-700  transition-colors duration-200 ease-in-out p-2
     cursor-pointer
     "
-      onClick={() => handelOnclick()}
+      onClick={() => handelOnclick(comm.id)}
     >
       <div className="flex items-center justify-between space-x-2">
         <div className="flex gap-x-3">

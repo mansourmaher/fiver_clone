@@ -13,9 +13,12 @@ interface SignInBtnProps {
 function SignInBtn({ role }: SignInBtnProps) {
   const router = useRouter();
   const handelclick = async () => {
+    if (!role) {
+      router.push("/sign-in");
+    } else
     if (role.role === "CLIENT") {
-      router.push("/buyer/dashboard");
-    } else if(role.role === "FREELANCER") {
+      router.push("/buyer/my-job-offers");
+    } else if (role.role === "FREELANCER") {
       router.push("/seller/dashboard");
     }
   };

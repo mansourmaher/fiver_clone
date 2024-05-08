@@ -23,7 +23,6 @@ export function DialogDemo() {
 
   const handelcreateCommunity = async () => {
     await createCommunity(title);
-    alert("Community created successfully");
     toast.success("Community created successfully");
     router.refresh();
   };

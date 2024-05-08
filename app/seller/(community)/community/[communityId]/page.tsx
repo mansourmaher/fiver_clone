@@ -6,6 +6,7 @@ import { UsersSidebar } from "../_componets/users-sidebar";
 import { ComunityList } from "../_componets/list-comunity";
 import { getPostsInCommunity } from "@/actions/get-posts-comunity-id";
 import { getCommNameByid } from "@/actions/getCommunityName";
+import { DialogDemo } from "@/app/landingpage/createcommunitybtn";
 const Page = async (params: {
   params: {
     communityId: string;
@@ -27,6 +28,8 @@ const Page = async (params: {
 
           <div className="border-b-2 mr-7 ml-6"></div>
           <div className="flex flex-col bg-gray-100 ">
+            <DialogDemo />
+
             <div className="flex h-full">
               <div>
                 <ComunityList />

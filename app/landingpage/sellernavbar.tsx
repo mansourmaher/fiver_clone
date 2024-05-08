@@ -18,6 +18,7 @@ import { getFirstCommunity } from "@/actions/getfirstcommunity";
 import LogoutBtn from "./logoutbtn";
 import { ProfileInformation } from "./profileinformation";
 import Profile2 from "./profile2";
+import FiverrLogo from "./FiverrLogo";
 
 const SellerNavbar = async () => {
   const user = await auth();
@@ -28,6 +29,7 @@ const SellerNavbar = async () => {
     <header className=" top-0 flex h-20 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden  gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6  lg:w-[1750px]">
         {/* <Logo /> */}
+        <FiverrLogo />
         <div className="border-r-2 border-muted h-16"></div>
 
         <Link

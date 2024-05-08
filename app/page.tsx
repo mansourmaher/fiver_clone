@@ -13,12 +13,12 @@ export default function Home() {
       <LandingPageNavbar />
 
       <HeroBanner />
-      <Companies />
+      {/* <Companies /> */}
       <PopulaireService />
       <Everything />
       <Services />
-      <Fiverbuisnes />
-      <JoinFiverr />
+      {/* <Fiverbuisnes />
+      <JoinFiverr /> */}
     </div>
   );
 }

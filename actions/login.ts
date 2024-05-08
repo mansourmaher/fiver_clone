@@ -33,7 +33,7 @@ export const login=async(values:z.infer<typeof LoginSchema>)=>
         const gettherole=existingUser.role
         if(gettherole==="CLIENT")
         {
-            await signIn('credentials',{email,password,redirectTo:"/buyer/dashboard"})
+            await signIn('credentials',{email,password,redirectTo:"/buyer/search"})
         }
         else if(gettherole==="FREELANCER")
         {

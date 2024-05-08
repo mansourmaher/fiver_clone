@@ -24,7 +24,7 @@ function DonutsChart({ level }: Props) {
     labels: level?.map((l) => l.name),
     datasets: [
       {
-        label: userData ? "User Data" : "Course Data",
+        label: userData ? "User Data" : "Category",
         data: level?.map((l) => l.count),
         backgroundColor: [
           "rgb(255, 99, 132)",

@@ -6,6 +6,7 @@ import { UsersSidebar } from "../_componets/users-sidebar";
 import { ComunityList } from "../_componets/list-comunity";
 import { getPostsInCommunity } from "@/actions/get-posts-comunity-id";
 import { getCommNameByid } from "@/actions/getCommunityName";
+import { DialogDemo } from "@/app/landingpage/createcommunitybtn";
 const Page = async (params: {
   params: {
     communityId: string;
@@ -21,6 +22,7 @@ const Page = async (params: {
       <div className="flex justify-between h-full w-full ">
         <div className="w-full ">
           <div className="flex flex-row items-center  ml-4 justify-between">
+            <DialogDemo />
             {/* <CommunityHeader commName={communityName!} /> */}
             <UsersSidebar communityId={comunityId!} />
           </div>

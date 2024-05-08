@@ -47,7 +47,7 @@ export const LoginForm = () => {
     setError("");
     setSucces("");
     startTransition(() => {
-      login(values).then((result:any) => {
+      login(values).then((result: any) => {
         setError(result?.error);
 
         setSucces(result?.success);
@@ -158,9 +158,7 @@ export const LoginForm = () => {
                 </span>
               </div>
             </div>
-            <div className="w-full">
-             
-            </div>
+            <div className="w-full"></div>
           </div>
         </div>
       </div>

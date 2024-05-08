@@ -34,7 +34,7 @@ function CourseBarchat({ courses }: CourseBarchatProps) {
     labels: string[];
     datasets: any[];
   }>({
-    labels: courses.map((c:any) => c.name),
+    labels: courses.map((c: any) => c.name),
     datasets: [],
   });
 

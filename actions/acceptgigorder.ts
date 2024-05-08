@@ -28,16 +28,16 @@ export async function acceptgigorder(id:string) {
             userID:getthegigname!.buyer.id
         }
     })
-    const contract=await db.contarct.create({
-        data:{
-            jobApplicationId:getthegigname!.id,
-            freelancerId:getthegigname!.sellerId,
-            clientId:getthegigname!.buyerId,
-            title:getthegigname?.gig.title!,
-            price:getthegigname!.gig.price,
-            description:getthegigname!.gig.description
-        }
-    })
+    // const contract=await db.contarct.create({
+    //     data:{
+    //         jobApplicationId:getthegigname!.id,
+    //         freelancerId:getthegigname!.sellerId,
+    //         clientId:getthegigname!.buyerId,
+    //         title:getthegigname?.gig.title!,
+    //         price:getthegigname!.gig.price,
+    //         description:getthegigname!.gig.description
+    //     }
+    // })
     return order
 }
 /*model Contarct {

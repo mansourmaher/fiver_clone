@@ -68,17 +68,17 @@ export default function Page() {
   };
 
   const addGig = async () => {
-    if (
-      files.length < 1 ||
-      title === "" ||
-      description === "" ||
-      category === "" ||
-      features.length < 1 ||
-      price === 0 ||
-      shortDesc === ""
-    ) {
-      toast.error("Please fill all the fields");
-    } else {
+    // if (
+    //   files.length < 1 ||
+    //   title === "" ||
+    //   description === "" ||
+    //   category === "" ||
+    //   features.length < 1 ||
+    //   price === 0 ||
+    //   shortDesc === ""
+    // ) {
+    //   toast.error("Please fill all the fields");
+    // } else {
       const formData = new FormData();
       files.forEach((file) => formData.append("images", file));
   
@@ -101,7 +101,7 @@ export default function Page() {
   
       toast.success("Gig created successfully");
       router.refresh();
-    }
+    
   };
   
 

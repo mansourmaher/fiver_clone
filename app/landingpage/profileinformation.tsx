@@ -184,7 +184,7 @@ export const ProfileInformation = ({ user }: ProfileHeaderProps) => {
       <Toaster />
       <AlertDialog>
         <AlertDialogTrigger className="flex items-center gap-x-2" asChild>
-          <Button className="w-full ">Profile information</Button>
+          <Button className="w-full " variant={"outline"}>Profile information</Button>
         </AlertDialogTrigger>
         <AlertDialogContent className="max-w-[50%] overflow-hidden bg-white">
           <AlertDialogTitle className="flex justify-between items-center w-full">
