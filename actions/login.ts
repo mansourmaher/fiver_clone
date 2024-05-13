@@ -30,6 +30,10 @@ export const login=async(values:z.infer<typeof LoginSchema>)=>
      }
     existingUser.emailVerified=false
     try{
+        if(!existingUser.isActive)
+        {
+            return {error:"Account is deactivated"}
+        }
         const gettherole=existingUser.role
         if(gettherole==="CLIENT")
         {
@@ -39,12 +43,10 @@ export const login=async(values:z.infer<typeof LoginSchema>)=>
         {
             await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
         }
-        else
+        else if(gettherole==="ADMIN")
         {
-            await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
+            await signIn('credentials',{email,password,redirectTo:"/admin/frelencers"})
         }
-
-        await signIn('credentials',{email,password,redirectTo:"/seller/dashboard"})
         
         return {success:"Logged in"}
     }catch(error:any){

@@ -36,7 +36,7 @@ const LayoutDashbord = async ({ children }: { children: React.ReactNode }) => {
         /> */}
       </div>
 
-      <main className=" pt-[80px] h-full">{children}</main>
+      <main className=" pt-[50px] h-full">{children}</main>
     </div>
   );
 };

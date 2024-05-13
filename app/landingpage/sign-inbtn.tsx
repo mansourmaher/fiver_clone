@@ -11,15 +11,24 @@ interface SignInBtnProps {
 }
 
 function SignInBtn({ role }: SignInBtnProps) {
+  
   const router = useRouter();
   const handelclick = async () => {
-    if (!role) {
+   
+    if (!role.role) {
       router.push("/sign-in");
     } else
     if (role.role === "CLIENT") {
       router.push("/buyer/my-job-offers");
     } else if (role.role === "FREELANCER") {
       router.push("/seller/dashboard");
+    }
+    else if(role.role==="ADMIN")
+      {
+        router.push("/admin/frelencers")
+      }
+    {
+      router.push("/admin/frelencers")
     }
   };
   return (

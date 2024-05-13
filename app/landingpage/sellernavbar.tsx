@@ -168,13 +168,18 @@ const SellerNavbar = async () => {
               <span className="sr-only">Toggle user menu</span>
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+          <DropdownMenuContent align="end" className="bg-white">
+            <DropdownMenuLabel>
+              Account
+            </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Profile2 />
 
             <DropdownMenuSeparator />
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>
+              {" "}
+              <Link href="/seller/update_profile">Profile</Link>
+            </DropdownMenuItem>
+
             <DropdownMenuSeparator />
             <LogoutBtn />
           </DropdownMenuContent>

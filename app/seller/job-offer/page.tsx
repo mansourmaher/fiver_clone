@@ -8,6 +8,7 @@ const Page = async () => {
 
   return (
     <div className="mt-32">
+      {/* @ts-ignore */}
       <SingleJobList jobs={jobs} />
     </div>
   );

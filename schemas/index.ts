@@ -22,10 +22,21 @@ export const RegisterSchema = z.object({
 }),
     role: z.string().min(0, {
         message: "Please select a role"
-    })
+    }),
+    imageUrl: z.string().min(0, {
+        message: "Please enter a valid image url"
+    }).optional()
 
 
 })
+
+export const ResetSchema = z.object({
+    email: z.string().email({message: "Please enter a valid email"})
+})
+export const NewPasswordSchema=z.object({
+    password:z.string().min(6,{message:"Password must be at least 6 characters long"})
+})
+
 export const ProfileSchema=z.object({
     date:z.date().refine((date)=>date!==undefined,{message:"Please select a date"}),
     optionSelected:z.string().min(0,{message:"Please select you filiers "}).optional(),

@@ -9,7 +9,12 @@ export async function getLoggedUser(){
     return await db.user.findUnique({   
         where:{
             id:user?.user.id
+        },
+        include:{
+            origin:true
         }
+        
     }
+
 )
 }

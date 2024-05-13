@@ -4,6 +4,8 @@ import { categories } from "@/utils/categories";
 import { createJobOffer } from "@/actions/create-job-offer";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import UploadImagewithcloudinar from "@/app/(seller)/_componenets/UploadImagewithcloudinar";
+import UploadImagewithcloudinarincomunity from "../../../(community)/community/_componets/comunity-upload-image copy";
 
 function SingleJobofferCreate() {
   const inputClassName =
@@ -20,7 +22,6 @@ function SingleJobofferCreate() {
   const [shortDesc, setShortDesc] = useState("");
   const [singleFeature, setSingleFeature] = useState("");
   const [imagesrc, setImagesrc] = useState("");
-  const [tabofimages, setTabofimages] = useState([]);
   const router = useRouter();
 
   const handleChange = (e: any) => {};
@@ -42,7 +43,8 @@ function SingleJobofferCreate() {
         category,
         price,
         features,
-        shortDesc
+        shortDesc,
+        imagesrc
       );
       toast.success("Job created successfully");
       router.push("/buyer/my-job-offers");
@@ -156,7 +158,14 @@ function SingleJobofferCreate() {
             </ul>
           </div>
           <div>
-            <div></div>
+            <div>
+              <UploadImagewithcloudinar
+                value={imagesrc}
+                // @ts-ignore
+                onchange={(url) => setImagesrc(url)}
+
+              />
+            </div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-11">

@@ -28,6 +28,15 @@ export async function acceptApply(applyId: string) {
             status: "accepted"
         }
     })
+    await db.job.update({
+        where:{
+            id:getjobname!.jobId
+        },
+        data:{
+            isCompleted:true
+        }
+    
+    })
     const createnotification=await db.notifications.create({
         data:{
             message:"Your application for "+getjobname!.job.title+" has been accepted",

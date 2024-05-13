@@ -5,7 +5,6 @@ import { getBuyerOrders } from "@/actions/getbuyerorders";
 
 const Page = async () => {
   const orders = await getBuyerOrders();
-  console.log(orders);
   return (
     <div className="min-h-[80vh] my-10 px-32 mt-32">
       <SingleOrdersPage orders={orders} />

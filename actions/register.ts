@@ -16,7 +16,7 @@ export const register=async(values:z.infer<typeof RegisterSchema>)=>
     {
         return {error:"Invalid fields"}
     }
-    const {email,password,name,role}=validateFiels.data
+    const {email,password,name,role,imageUrl}=validateFiels.data
     const hassedPassword=await bcrypt.hash(password,10)
     const existUser=await db.user.findFirst({where:{email}})
     if(existUser)
@@ -24,7 +24,7 @@ export const register=async(values:z.infer<typeof RegisterSchema>)=>
         return {error:"Email already exist"}
     }
     
-    await db.user.create({data:{email,password:hassedPassword,username:name,role:role!=="CLIENT"?"FREELANCER":"CLIENT"}})
+    await db.user.create({data:{email,password:hassedPassword,username:name,role:role!=="CLIENT"?"FREELANCER":"CLIENT",profileImage:imageUrl}})
    
 
 

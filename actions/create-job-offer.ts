@@ -4,7 +4,7 @@ import { auth } from "@/auth"
 import { db } from "@/lib/db"
 
 
-export async function createJobOffer(title:string, description:string, category:string, price:number,expertises:string[],shordtDescription:string) {
+export async function createJobOffer(title:string, description:string, category:string, price:number,expertises:string[],shordtDescription:string,imagesrc:string) {
     const user=await auth()
     const userId=user?.user.id
     console.log("category",category )
@@ -16,7 +16,9 @@ export async function createJobOffer(title:string, description:string, category:
       price,
       expertise:expertises,
       userId:userId!,
-      shortDesc:shordtDescription
+      shortDesc:shordtDescription,
+      imagesrc:imagesrc
+    
 
     }
   })

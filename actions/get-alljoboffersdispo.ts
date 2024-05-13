@@ -9,6 +9,7 @@ export async function getalljoboffersdispo() {
     const jobs=await db.job.findMany({
         where:{
             isCompleted:false
+            
         },
         include:{
            createdBy :true

@@ -21,11 +21,14 @@ import { useState, useTransition } from "react";
 import { register } from "@/actions/register";
 import { Loader, Slice, WavesIcon } from "lucide-react";
 import Link from "next/link";
+import UploadPhotoProfile from "@/app/landingpage/UploadPhotoProfile";
+import Image from "next/image";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [succes, setSucces] = useState<string | undefined>("");
+  const [imageUrl, setImageUrl] = useState<string>("" as string);
 
   const [selected, setSelected] = useState<string>("CLIENT");
   const onChange = () => {
@@ -39,14 +42,16 @@ export const RegisterForm = () => {
       password: "",
       name: "",
       role: "CLIENT",
+      imageUrl: "",
     },
   });
   const onSubmit = (values: z.infer<typeof RegisterSchema>) => {
     values.role = selected;
+    values.imageUrl = imageUrl;
     setError("");
     setSucces("");
     startTransition(() => {
-      register(values).then((result:any) => {
+      register(values).then((result: any) => {
         setError(result?.error);
         setSucces(result?.succes);
       });
@@ -144,6 +149,32 @@ export const RegisterForm = () => {
                   {selected} {selected === "CLIENT" ? "🎓" : "👨‍🏫"}
                 </span>
               </div>
+              <div className="flex justify-between items-center">
+                <span className="font-bold text-gradient-to-r from-cyan-500 to-blue-500 cursor-pointer">
+                  Uplaod your profile picture
+                </span>
+                <UploadPhotoProfile
+                  onchange={(url) => setImageUrl(url)}
+                  value={imageUrl}
+                />
+              </div>
+              {form.formState.errors.imageUrl && (
+                <FormMessage>
+                  {form.formState.errors.imageUrl?.message}
+                </FormMessage>
+              )}
+
+              {imageUrl && (
+                <div className="flex justify-center">
+                  <Image
+                    src={imageUrl}
+                    width={100}
+                    height={100}
+                    className="rounded-full"
+                    alt="photo-profile"
+                  />
+                </div>
+              )}
 
               <div className="flex items-center justify-between">
                 <div className="flex items-center">
@@ -174,9 +205,7 @@ export const RegisterForm = () => {
                 </span>
               </div>
             </div>
-            <div className="w-full">
-              
-            </div>
+            <div className="w-full"></div>
             <span className="text-sm text-gray-600">
               <Link
                 className="font-medium text-gradient-to-r from-cyan-500 to-blue-500"

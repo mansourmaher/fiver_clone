@@ -3,10 +3,11 @@ import ComunityPostList from "../_componets/comunity-posts-list";
 import Message from "../_componets/message";
 
 import { UsersSidebar } from "../_componets/users-sidebar";
-import { ComunityList } from "../_componets/list-comunity";
+import  ComunityList  from "../_componets/list-comunity";
 import { getPostsInCommunity } from "@/actions/get-posts-comunity-id";
 import { getCommNameByid } from "@/actions/getCommunityName";
 import { DialogDemo } from "@/app/landingpage/createcommunitybtn";
+import { getAllCommunity } from "@/actions/get-all-community copy";
 const Page = async (params: {
   params: {
     communityId: string;
@@ -17,6 +18,8 @@ const Page = async (params: {
   const postId = extractedComunityIdandPostId[1];
   const posts = await getPostsInCommunity(comunityId);
   const communityName = await getCommNameByid(comunityId);
+  const comunity = await getAllCommunity();
+
   return (
     <div className="max-h-full w-full">
       <div className="flex justify-between h-full w-full ">
@@ -28,11 +31,13 @@ const Page = async (params: {
 
           <div className="border-b-2 mr-7 ml-6"></div>
           <div className="flex flex-col bg-gray-100 ">
-            <DialogDemo />
+           
 
             <div className="flex h-full">
               <div>
-                <ComunityList />
+              <DialogDemo />
+
+                <ComunityList comunity={comunity} />
               </div>
               <div className="flex flex-col w-full px-6  space-y-2 bg-white">
                 {/* <CommunitySearchProblem /> */}

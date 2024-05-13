@@ -29,6 +29,7 @@ model User {
   updatedAt        DateTime? @updatedAt
   description      String?
   profileImage     String?
+  isActive         Boolean   @default(true)
   isProfileInfoset Boolean   @default(false)
   emailVerified    Boolean   @default(true)
   role             Role      @default(CLIENT)
@@ -48,15 +49,14 @@ model User {
 
   Contarctasclient Contarct[] @relation("client")
   origin           Origin?
-  filier          String?
-  about           String?
-  DateOfBirth     DateTime?
-  subtitle        String?
-  linkedin        String?
-  twitter         String?
-  github          String?
-  patiants     String[]
-  
+  filier           String?
+  about            String?
+  DateOfBirth      DateTime?
+  subtitle         String?
+  linkedin         String?
+  twitter          String?
+  github           String?
+  patiants         String[]
 }
 
 model Origin {
@@ -129,6 +129,8 @@ model Message {
   orderId          String?
   jobapplication   JobApplication? @relation(fields: [jobApplicationId], references: [id])
   jobApplicationId String?
+  fileUrl          String?         @default("")
+  fileName         String?         @default("")
 }
 
 model Job {
@@ -137,6 +139,7 @@ model Job {
   description  String
   category     String
   price        Int
+  imagesrc     String?
   shortDesc    String?
   createdAt    DateTime         @default(now())
   userId       String
@@ -163,6 +166,7 @@ model JobApplication {
 model Community {
   id    String @id @default(uuid())
   title String
+  category String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -224,4 +228,22 @@ model Contarct {
   price            Int
   createdAt        DateTime       @default(now())
   updatedAt        DateTime       @updatedAt
+}
+
+model VerificationToken {
+  id      String   @id @default(uuid())
+  email   String
+  token   String
+  expires DateTime
+
+  @@unique([email, token])
+}
+
+model PasswordResetToken {
+  id      String   @id @default(uuid())
+  email   String
+  token   String
+  expires DateTime
+
+  @@unique([email, token])
 }

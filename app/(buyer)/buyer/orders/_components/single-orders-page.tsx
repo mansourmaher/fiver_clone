@@ -1,20 +1,27 @@
+"use client"
 import { getOrders } from "@/actions/get-my-orders";
 import Link from "next/link";
 import React from "react";
 import { format } from "date-fns";
 import { getBuyerOrders } from "@/actions/getbuyerorders";
+import { Button } from "@/components/ui/button";
+import { handeldeleteorder } from "@/actions/deleteorder";
+import { handelcancelorder } from "@/actions/ordercancel";
 
 interface Order {
   orders: Awaited<ReturnType<typeof getBuyerOrders>>;
 }
 
 function SingleOrdersPage({ orders }: Order) {
+  const handeldeleteordre = async (id: string) => {
+    await handeldeleteorder(id);
+  };
+  const handelcancelordere = async (id: string) => {
+    await handelcancelorder(id);
+  };
   return (
     <div className="min-h-[80vh] my-10 mt-0 px-32">
-      <h3 className="m-5 text-2xl font-semibold">
-        All your Orders as a buyer //hatha client postula fi gigs mhabtou
-        lfrelencer
-      </h3>
+      <h3 className="m-5 text-2xl font-semibold">All your Orders as a buyer</h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
           <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -40,6 +47,9 @@ function SingleOrdersPage({ orders }: Order) {
               </th>
               <th scope="col" className="px-6 py-3">
                 Send Message
+              </th>
+              <th scope="col" className="px-6 py-3">
+                Actions
               </th>
             </tr>
           </thead>
@@ -71,6 +81,25 @@ function SingleOrdersPage({ orders }: Order) {
                     >
                       Send
                     </Link>
+                  </td>
+                  <td className="px-6 py-4 ">
+                    {order.isCompleted ? (
+                      <Button
+                        variant="destructive"
+                        size="sm"
+                        className="flex items-center"
+                        onClick={() => handeldeleteordre(order.id)}
+                      >
+                        Delete
+                      </Button>
+                    ) : (
+                      <Button
+                        variant="outline"
+                        onClick={() => handelcancelordere(order.id)}
+                      >
+                        Cancel
+                      </Button>
+                    )}
                   </td>
                 </tr>
               );

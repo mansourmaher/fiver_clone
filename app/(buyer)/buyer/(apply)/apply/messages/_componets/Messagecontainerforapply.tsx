@@ -7,7 +7,10 @@ import { useRouter } from "next/navigation";
 import { getMessageInOrder } from "@/actions/getmessageinorder";
 import { getLoggedUser } from "@/actions/get-logged-user";
 import { sendMessage } from "@/actions/sendmessage";
-import { sendMessageinapply } from "@/actions/sendMessageintheapply";
+import { senFile, sendMessageinapply } from "@/actions/sendMessageintheapply";
+import { Upload } from "lucide-react";
+import UploadPhotoProfile from "@/app/landingpage/UploadPhotoProfile";
+import UploadPdfInmessage from "./uploadpdf";
 
 interface MessageContainerProps {
   messages: Awaited<ReturnType<typeof getMessageInOrder>>;
@@ -20,6 +23,9 @@ function Messagecontainerforapply({
   userInfo,
   applyId,
 }: MessageContainerProps) {
+  const [fileUrl, setFileUrl] = useState("");
+  const [fileName, setFileName] = useState("");
+
   function formatTime(timestamp: any) {
     const date = new Date(timestamp);
     let hours = date.getHours();
@@ -37,11 +43,17 @@ function Messagecontainerforapply({
 
   const sendMessages = async () => {
     if (messageText.length) {
-      await sendMessageinapply(applyId, messageText);
+      await sendMessageinapply(applyId, messageText, fileUrl, fileName);
       setMessageText("");
       router.refresh();
     }
   };
+
+  const sendPdf = async (url: string) => {
+    await senFile(applyId, url);
+    router.refresh();
+  };
+
   return (
     <div className="h-[80vh]">
       <div className="max-h-[80vh]   flex flex-col justify-center items-center">
@@ -64,7 +76,23 @@ function Messagecontainerforapply({
                         : "bg-gray-100 text-gray-800"
                     } px-4 py-2 max-w-xs break-all`}
                   >
-                    <p>{message.text}</p>
+                    <div className="flex flex-row space-x-2 items-center">
+                      {message.text && (
+                        <p className="text-sm">{message.text}</p>
+                      )}
+
+                      {message.fileUrl && (
+                        <a
+                          href={message.fileUrl}
+                          target="_blank"
+                          className="flex space-x-2"
+                        >
+                          <span className="text-sm">Download</span>
+                          <Upload size={24} />
+                        </a>
+                      )}
+                    </div>
+
                     <span className="text-sm text-gray-600">
                       {formatTime(message.createdAt)}
                     </span>
@@ -79,7 +107,11 @@ function Messagecontainerforapply({
             </div>
           </div>
 
-          <div className="mt-8 flex">
+          <div className="mt-8 flex items-center">
+          <UploadPdfInmessage
+              value={fileUrl}
+              onchange={(url) => sendPdf(url)}
+            />
             <input
               type="text"
               className="rounded-full py-2 px-4 mr-2 w-full"
@@ -95,6 +127,7 @@ function Messagecontainerforapply({
             >
               <FaRegPaperPlane />
             </button>
+            
           </div>
         </div>
       </div>

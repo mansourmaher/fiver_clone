@@ -27,7 +27,7 @@ const ClientNavbar = async () => {
   return (
     <header className=" top-0 flex h-20 items-center gap-4 border-b bg-background px-4 md:px-6">
       <nav className="hidden  gap-6 text-lg font-medium md:flex md:flex-row md:items-center md:gap-5 md:text-sm lg:gap-6  lg:w-[1750px]">
-         <FiverrLogo /> 
+        <FiverrLogo />
         <div className="border-r-2 border-muted h-16"></div>
 
         <Link
@@ -148,10 +148,10 @@ const ClientNavbar = async () => {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <Profile2 />
 
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Support</DropdownMenuItem>
+            <DropdownMenuItem>
+              <Link href="/buyer/update_profile">Profile</Link>
+            </DropdownMenuItem>
             <DropdownMenuSeparator />
             <LogoutBtn />
           </DropdownMenuContent>
