@@ -21,9 +21,7 @@ function SingleFrelencer({ frelencers }: Frelencers) {
   };
   return (
     <div className="min-h-[80vh] my-10 mt-0 px-32">
-      <h3 className="m-5 text-2xl font-semibold">
-        All your Orders as a buyer //hatha client postula fi gigs mhabtou
-        lfrelencer
+      <h3 className="m-5 text-2xl font-semibold">All Workify users
       </h3>
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -41,6 +39,9 @@ function SingleFrelencer({ frelencers }: Frelencers) {
               </th>
               <th scope="col" className="px-6 py-3">
                 status
+              </th>
+              <th scope="col" className="px-6 py-3">
+                role
               </th>
               <th scope="col" className="px-6 py-3">
                 actions
@@ -69,6 +70,13 @@ function SingleFrelencer({ frelencers }: Frelencers) {
                       <Badge variant="secondary">Active</Badge>
                     ) : (
                       <Badge variant="destructive">Inactive</Badge>
+                    )}
+                  </td>
+                  <td className="px-6 py-4">
+                    {order.role === "FREELANCER" ? (
+                      <Badge variant="secondary">FREELANCER</Badge>
+                    ) : (
+                      <Badge variant="default">CLIENT</Badge>
                     )}
                   </td>
 

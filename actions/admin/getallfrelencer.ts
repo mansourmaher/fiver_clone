@@ -9,8 +9,11 @@ export async function getallfrelencer()
     const frelencers=await db.user.findMany(
         {
             where:{
-                role:"FREELANCER"
+                role:{
+                    not:"ADMIN"
+                }
             }
+            
         }
     )
     return frelencers
@@ -27,3 +30,5 @@ export async function getallclient()
     )
     return clients
 }
+
+
