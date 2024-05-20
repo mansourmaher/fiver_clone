@@ -3,24 +3,33 @@
 import React from "react";
 import { formatDistance } from "date-fns";
 import { Check } from "lucide-react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { getAllNotifications } from "@/actions/getallnotifications";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { markNotificationAsRead } from "@/actions/markNotificationAsread";
+import { useSession } from "next-auth/react";
+import { getLoggedUser } from "@/actions/get-logged-user";
 
 interface SingleNotificationsProps {
   notifcation: Awaited<ReturnType<typeof getAllNotifications>>[0];
+  user: Awaited<ReturnType<typeof getLoggedUser>>;
 }
 
 export default function SingleNotifications({
   notifcation,
+  user,
 }: SingleNotificationsProps) {
+  const pathnames = usePathname();
   const [wichCheck, setWichCheck] = React.useState(false);
+  const isfrelecner = pathnames.includes("seller");
+  const isclient = pathnames.includes("buyer");
   const router = useRouter();
+
+  console.log("user2", user);
 
   const handelmakeread = async (id: string) => {
     setWichCheck(true);
-     await markNotificationAsRead(id);
+    await markNotificationAsRead(id);
   };
 
   const handelOnclick = (message: string) => {
@@ -33,6 +42,18 @@ export default function SingleNotifications({
     // message.split(" ")[3] === "your" &&
     // router.push(`/course/${notifcation?.courseId}/chapter/${notifcation?.chapterId}`)
     // alert(message);
+    message.split(" ")[4] === "message" && isfrelecner &&
+      router.push(`/seller/orders/messages/${notifcation?.distinationId}`);
+    message.split(" ")[4] === "message" && isclient &&
+      router.push(`/buyer/orders/messages/${notifcation?.distinationId}`);
+      message.split(" ")[1] === "application" && isfrelecner &&
+      router.push(`/seller/postuled-jobs`);
+    message.split(" ")[4]==="order" && isfrelecner &&
+      router.push(`/seller/orders`);
+      message.split(" ")[4]==="application" && isclient &&
+      router.push(`/buyer/joboffer/apply/${notifcation?.distinationId}`);
+      message.split(" ")[1]==="order" && isclient &&
+      router.push(`/buyer/orders`);
   };
 
   return (

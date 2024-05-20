@@ -13,6 +13,9 @@ export async function getMyjobOffers(){
         where:{
             userId:userId,
             isCompleted:false
+        },include:{
+            
+
         }
     })
     return jobs

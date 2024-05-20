@@ -6,6 +6,8 @@ import { auth } from '@/auth';
 import { format } from 'date-fns';
 
 type ProfileInformation={
+    username:string;
+
     date:Date;
     optionSelected:string;
     imageUrl:string;
@@ -40,7 +42,7 @@ export const FillInformation=async(value:ProfileInformation)=>
     }
     console.log(value)
 
-    const {date,optionSelected,about,imageUrl,country,subtitle,patients,linkedin,github,twitter}=value
+    const {username,date,optionSelected,about,imageUrl,country,subtitle,patients,linkedin,github,twitter}=value
 
     const existingOrigin=await db.origin.findFirst({
         where:{
@@ -90,6 +92,7 @@ export const FillInformation=async(value:ProfileInformation)=>
             id:userId
         },
         data:{
+            username:username,
             DateOfBirth:date,
             filier:optionSelected,
             

@@ -66,6 +66,7 @@ function SingleUpdateProfile({ user }: SingleUpdateProfileProps) {
   const handelSubmit = async () => {
     setIsloading(true);
     const data = {
+      username: user?.username!,
       date: date as Date,
       optionSelected: optionSelected as string,
       imageUrl: imageUrl as string,

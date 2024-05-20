@@ -12,7 +12,21 @@ export async function getalljoboffersdispo() {
             
         },
         include:{
-           createdBy :true
+            
+           createdBy :{
+                select:{
+                    id:true,
+                     profileImage:true,
+                     email:true,
+                     username:true,
+                     Job:{
+                        select:{
+                            id:true
+                        }
+                     }
+                }
+                
+           }
         }
 
     })

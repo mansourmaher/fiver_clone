@@ -23,6 +23,7 @@ import { Loader, Slice, WavesIcon } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { login } from "@/actions/login";
+import { Social } from "./Social";
 
 export const LoginForm = () => {
   const searchParams = useSearchParams();
@@ -158,7 +159,9 @@ export const LoginForm = () => {
                 </span>
               </div>
             </div>
-            <div className="w-full"></div>
+            <div className="w-full">
+              <Social />
+            </div>
           </div>
         </div>
       </div>

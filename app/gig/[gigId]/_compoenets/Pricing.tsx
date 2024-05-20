@@ -35,6 +35,7 @@ function Pricing({ gigData, userInfo }: PricingProps) {
     await createOrder(gigData!.id);
     toast.success("Order Placed Successfully");
     setIshasOrdered(true);
+     router.push("/buyer/orders");
   };
 
   // i want to be userinfo de type any

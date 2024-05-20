@@ -23,6 +23,7 @@ import { Loader, Slice, WavesIcon } from "lucide-react";
 import Link from "next/link";
 import UploadPhotoProfile from "@/app/landingpage/UploadPhotoProfile";
 import Image from "next/image";
+import { Social } from "./Social";
 
 export const RegisterForm = () => {
   const [isPending, startTransition] = useTransition();
@@ -205,7 +206,9 @@ export const RegisterForm = () => {
                 </span>
               </div>
             </div>
-            <div className="w-full"></div>
+            <div className="w-full">
+              <Social />
+            </div>
             <span className="text-sm text-gray-600">
               <Link
                 className="font-medium text-gradient-to-r from-cyan-500 to-blue-500"

@@ -1,9 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import SearchGridItem from "./SearchGridItem";
 import { getGigsByFilter } from "@/actions/get-gigs-byfilter";
 import { categories } from "@/utils/categories";
+import SearchGridItem from "@/app/search/_components/SearchGridItem";
 
 interface SearchPageProps {
   gigs: Awaited<ReturnType<typeof getGigsByFilter>>;

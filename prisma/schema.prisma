@@ -21,8 +21,10 @@ enum Role {
 
 model User {
   id               String    @id @default(cuid())
+  name             String?
   email            String    @unique
-  password         String
+  password         String?
+  image            String?
   username         String?
   fullname         String?
   createdAt        DateTime? @default(now())
@@ -31,7 +33,7 @@ model User {
   profileImage     String?
   isActive         Boolean   @default(true)
   isProfileInfoset Boolean   @default(false)
-  emailVerified    Boolean   @default(true)
+  emailVerified    DateTime? @default(now())
   role             Role      @default(CLIENT)
   Gigs             Gigs[]
   Reviews          Reviews[]
@@ -57,6 +59,10 @@ model User {
   twitter          String?
   github           String?
   patiants         String[]
+
+  report   Report[]  @relation("userId")
+  reported Report[]  @relation("reportedUserId")
+  Account  Account[]
 }
 
 model Origin {
@@ -164,8 +170,8 @@ model JobApplication {
 }
 
 model Community {
-  id    String @id @default(uuid())
-  title String
+  id       String  @id @default(uuid())
+  title    String
   category String?
 
   createdAt DateTime @default(now())
@@ -207,9 +213,10 @@ model PostResponse {
 model Notifications {
   id String @id @default(uuid())
 
-  userID  String
-  user    User   @relation(fields: [userID], references: [id])
-  message String
+  userID        String
+  user          User    @relation(fields: [userID], references: [id])
+  message       String
+  distinationId String?
 
   createdAt DateTime @default(now())
   isRead    Boolean  @default(false)
@@ -246,4 +253,33 @@ model PasswordResetToken {
   expires DateTime
 
   @@unique([email, token])
+}
+
+model Report {
+  id             String   @id @default(uuid())
+  userId         String
+  user           User     @relation("userId", fields: [userId], references: [id])
+  reportedUserId String
+  reportedUser   User     @relation("reportedUserId", fields: [reportedUserId], references: [id])
+  reason         String
+  createdAt      DateTime @default(now())
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
 }

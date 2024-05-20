@@ -48,6 +48,8 @@ export async function sendMessage(orderId:string,message:string)
         data:{
             userID:user!.user.id===order?.buyerId?order?.sellerId:order?.buyerId!,
             message:`You have a new message from ${userr?.username} about ${order?.gig.title}`,
+            distinationId:orderId,
+            
             isRead:false
 
         }

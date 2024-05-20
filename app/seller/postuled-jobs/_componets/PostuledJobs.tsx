@@ -6,6 +6,7 @@ import { format } from "date-fns";
 import Link from "next/link";
 import React from "react";
 import { ContractModal } from "../_compoents/contractmodal";
+import { ReportBtn } from "./reportclientbtn";
 
 interface Apply {
   apply: Awaited<ReturnType<typeof getMypostuledJobs>>;
@@ -98,7 +99,10 @@ function PostuledJobs({ apply }: Apply) {
                           Delete
                         </Button>
                       ) : (
-                        <ContractModal applyId={order.id} />
+                        <>
+                          <ContractModal applyId={order.id} />
+                          <ReportBtn clienttoreport={order.job.createdBy} />
+                        </>
                       )}
                     </div>
                   </td>

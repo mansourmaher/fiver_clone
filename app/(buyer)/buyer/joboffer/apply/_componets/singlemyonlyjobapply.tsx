@@ -21,8 +21,6 @@ function SingleMyonlyjobapply({ apply }: SingleMyonlyjobapplyProps) {
     router.refresh();
   };
   const handelaccept = async (id: string) => {
-    console.log(id);
-
     await acceptApply(id);
     router.refresh();
   };

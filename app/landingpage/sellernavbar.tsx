@@ -19,10 +19,12 @@ import LogoutBtn from "./logoutbtn";
 import { ProfileInformation } from "./profileinformation";
 import Profile2 from "./profile2";
 import FiverrLogo from "./FiverrLogo";
+import { getLoggedUser } from "@/actions/get-logged-user";
 
 const SellerNavbar = async () => {
   const user = await auth();
   const userId = user?.user.id;
+  const loggeduser=await getLoggedUser()
   const firstComunity = await getFirstCommunity();
 
   return (
@@ -184,7 +186,7 @@ const SellerNavbar = async () => {
             <LogoutBtn />
           </DropdownMenuContent>
         </DropdownMenu>
-        <SheetNotification />
+        <SheetNotification   user={loggeduser} />
       </div>
     </header>
   );

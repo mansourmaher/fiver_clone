@@ -1,5 +1,5 @@
 "use client";
-import { getallfrelencer } from "@/actions/admin/getallfrelencer";
+import { getallclient, getallfrelencer } from "@/actions/admin/getallfrelencer";
 import { togglestatus } from "@/actions/admin/togglestatus";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -9,12 +9,13 @@ import { Star } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { Reportlist } from "./reportslist";
 
 interface Frelencers {
-  frelencers: Awaited<ReturnType<typeof getallfrelencer>>;
+  frelencers: Awaited<ReturnType<typeof getallclient>>;
 }
 
-function SingleFrelencer({ frelencers }: Frelencers) {
+function SingleClientPage({ frelencers }: Frelencers) {
   const router = useRouter();
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -36,7 +37,7 @@ function SingleFrelencer({ frelencers }: Frelencers) {
   return (
     <Card className="border border-gray-200 dark:border-gray-700 mx-8">
       <div className="">
-        <h3 className="m-5 text-2xl font-semibold">All Workify Frelencers</h3>
+        <h3 className="m-5 text-2xl font-semibold">All Workify Clients</h3>
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -61,7 +62,7 @@ function SingleFrelencer({ frelencers }: Frelencers) {
                   scope="col"
                   className="px-6 py-3 justify-center items-center flex"
                 >
-                  Rate
+                  Reports
                 </th>
 
                 <th scope="col" className="px-6 py-3">
@@ -101,27 +102,7 @@ function SingleFrelencer({ frelencers }: Frelencers) {
                       )}
                     </td>
                     <td className="px-6 py-4">
-                      <Badge
-                        variant={"outline"}
-                        className="flex items-center justify-center"
-                      >
-                        {!order.avgrating ? (
-                          <span className="text-gray-500">No rating yet</span>
-                        ) : (
-                          <>
-                            {Array.from(
-                              { length: Math.round(order.avgrating) },
-                              (_, i) => (
-                                <Star
-                                  key={i}
-                                  size={20}
-                                  className="text-yellow-500"
-                                />
-                              )
-                            )}
-                          </>
-                        )}
-                      </Badge>
+                      <Reportlist user={order} />
                     </td>
 
                     <td className="px-6 py-4 ">
@@ -173,4 +154,4 @@ function SingleFrelencer({ frelencers }: Frelencers) {
   );
 }
 
-export default SingleFrelencer;
+export default SingleClientPage;

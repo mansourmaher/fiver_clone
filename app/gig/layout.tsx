@@ -1,12 +1,9 @@
-import { auth } from "@/auth";
-import { redirect } from "next/dist/server/api-utils";
-import Image from "next/image";
-import AdminNavbar from "../../_compoenets/admin_navbar";
+import ClientNavbar from "@/app/landingpage/buyernavbar";
 
 const LayoutPage = async ({ children }: { children: React.ReactNode }) => {
   return (
     <div className="h-full">
-      <AdminNavbar />
+      <ClientNavbar />
       <div className="h-full">{children}</div>
     </div>
   );

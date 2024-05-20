@@ -27,6 +27,15 @@ export async function createOrder(gigId:string){
         }
 
     })
+    await db.notifications.create({
+        data:{
+            userID:gig.userId,
+            message:`You have a new order for ${gig.title}`,
+            distinationId:gigId,
+            isRead:false
+
+        }
+    })
 }
 /* id            String       @id @default(cuid())
   

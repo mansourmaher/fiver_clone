@@ -62,10 +62,12 @@ function SingleUpdateProfile({ user }: SingleUpdateProfileProps) {
   const [linkedin, setLinkedin] = useState<string>(initialLinkin);
   const [github, setGithub] = useState<string>(initialgithub);
   const [twitter, setTwitter] = useState<string>(initialtwitter);
+  const [username, setUsername] = useState<string>(user?.username!);
 
   const handelSubmit = async () => {
     setIsloading(true);
     const data = {
+      username: username as string,
       date: date as Date,
       optionSelected: optionSelected as string,
       imageUrl: imageUrl as string,
@@ -141,7 +143,7 @@ function SingleUpdateProfile({ user }: SingleUpdateProfileProps) {
               </div>
               <div>
                 <Label htmlFor="last-name">Username </Label>
-                <Input value={user?.username!} disabled />
+                <Input value={user?.username!} onChange={(e)=>setUsername(e.target.value)}  />
               </div>
             </div>
             <div>

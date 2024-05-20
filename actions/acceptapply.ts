@@ -26,6 +26,7 @@ export async function acceptApply(applyId: string) {
         },
         data: {
             status: "accepted"
+            
         }
     })
     await db.job.update({

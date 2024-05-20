@@ -27,7 +27,8 @@ export async function applyinjoboffer(jobId:string){
    const notification=await db.notifications.create({
          data:{
               message:"You have a new application for "+job.title,
-              userID:job.createdBy.id
+              userID:job.createdBy.id,
+              distinationId:jobId,
          }
     })
 }catch(e){

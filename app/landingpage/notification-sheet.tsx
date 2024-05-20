@@ -8,8 +8,13 @@ import { BellDot } from "lucide-react";
 import { useEffect, useState } from "react";
 import { any } from "zod";
 import SingleNotifications from "./single-notification";
+import { getLoggedUser } from "@/actions/get-logged-user";
 
-export default function SheetNotification() {
+interface SheetNotificationProps {
+  user:Awaited<ReturnType<typeof getLoggedUser>>;
+}
+
+export default function SheetNotification({user}:SheetNotificationProps) {
   //make it de type getallnotifications
   const [notification, setNotification] = useState<any[]>([]);
 
@@ -44,6 +49,7 @@ export default function SheetNotification() {
             <SingleNotifications
               key={notification.id}
               notifcation={notification}
+              user={user}
             />
           ))}
         </ScrollArea>

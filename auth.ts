@@ -4,6 +4,7 @@ import authConfig from './auth.config';
 import { Prisma } from '@prisma/client';
 import { db } from './lib/db';
 import { getUserByEmail, getUserById } from './data/user';
+import { redirect } from 'next/navigation';
 export const {
     handlers:{GET,POST},
     auth,
@@ -19,12 +20,14 @@ export const {
     events:{
         async linkAccount({user})
         {
+            console.log("linkAccount",user)
             await db.user.update({
                 where:{
-                    id:user.id
+                    id:user.id,
+                    
                 },
                 data:{
-                    emailVerified:true
+                    emailVerified:new Date()
                 }
             
 
@@ -37,7 +40,11 @@ export const {
        {
         
         
-        if(account?.provider !=="credentials")return true;
+        
+        if(account?.provider !=="credentials")
+           
+            return  true
+        ;
        
         const existingUser=await getUserById(user.id as string);
         if(!existingUser) return false;

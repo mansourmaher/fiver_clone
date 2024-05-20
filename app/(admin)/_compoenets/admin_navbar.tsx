@@ -29,6 +29,25 @@ const AdminNavbar = async () => {
         {/* <Logo /> */}
         <FiverrLogo />
         <div className="border-r-2 border-muted h-16"></div>
+
+        <Link
+          href="/admin/dashboard"
+          className="text-foreground transition-colors hover:text-foreground"
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/admin/frelencers"
+          className="text-foreground transition-colors hover:text-foreground"
+        >
+          Freelancers
+        </Link>
+        <Link
+          href="/admin/client"
+          className="text-foreground transition-colors hover:text-foreground"
+        >
+          clients
+        </Link>
       </nav>
       <Sheet>
         <SheetTrigger asChild>
